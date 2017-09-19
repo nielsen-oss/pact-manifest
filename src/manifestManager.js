@@ -6,9 +6,17 @@ const glob = require('glob')
 
 module.exports = class ManifestManager {
   constructor (options = {}) {
+    if (!options.manifestFile) {
+      throw new Error('required: manifestFile property')
+    }
+
+    if (!options.pactFilesPath) {
+      throw new Error('required: pactFilesPath property')
+    }
+
+    this.manifestFile = options.manifestFile
+    this.pactFilesPath = options.pactFilesPath
     this.basePath = options.basePath || process.cwd()
-    this.manifestFile = options.manifestFile || '/tmp/pact_manifest.json'
-    this.pactFilesPath = options.pactFilesPath || 'test/pacts/*.json'
     this.pactDefaultTag = options.pactDefaultTag || 'develop'
   }
 
