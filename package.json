@@ -11,8 +11,8 @@
     "coverage:view": "opn coverage/lcov-report/index.html",
     "commit": "git-cz",
     "docs": "yarn run docs:code && yarn run docs:api",
-    "docs:api": "doxdox *.js --layout bootstrap --output docs/index.html",
-    "docs:code": "docco *.js --output docs/code"
+    "docs:api": "doxdox '**.js' 'src/**/*.js' --layout bootstrap --output docs/index.html",
+    "docs:code": "docco --output docs/code *.js"
   },
   "author": "Liran Tal",
   "license": "Apache-2.0",
