@@ -1,4 +1,4 @@
-const ManifestManager = require('../../src/manifestManager')
+const ManifestManager = require('../../src/ManifestManager')
 const fs = require('fs')
 
 jest.mock('fs', () => ({

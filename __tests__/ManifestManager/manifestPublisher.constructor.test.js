@@ -1,4 +1,4 @@
-const ManifestPublisher = require('../../src/manifestPublisher')
+const ManifestPublisher = require('../../src/ManifestPublisher')
 
 test('constructor initializes successfully', () => {
   const options = {

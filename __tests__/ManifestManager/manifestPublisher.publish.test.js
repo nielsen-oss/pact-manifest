@@ -1,4 +1,4 @@
-const ManifestPublisher = require('../../src/manifestPublisher')
+const ManifestPublisher = require('../../src/ManifestPublisher')
 jest.mock('@pact-foundation/pact-node', () => ({
   publishPacts: jest.fn(() => { return Promise.resolve({a: 'b'}) })
 }))
