@@ -127,4 +127,23 @@ module.exports = class ManifestManager {
         return pactManifest
       })
   }
+
+  /**
+   * Converts a standard pact manifest file to an object tree of
+   * pact files by tag
+   *
+   * @TODO handle the use-case of multiple tags
+   *
+   * @param {Object} pactManifest a standard pact manifest-file
+   * @returns {Object} pacts an array of pact files by tag
+   */
+  getManifestsByTag (pactManifest = {}) {
+    let pacts = {}
+    for (let pactFilePath in pactManifest) {
+      let tag = pactManifest[pactFilePath]
+      pacts[tag] ? pacts[tag].push(pactFilePath) : pacts[tag] = [path.join(this.basePath, pactFilePath)]
+    }
+
+    return pacts
+  }
 }
