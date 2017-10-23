@@ -32,7 +32,57 @@ yarn add --dev pact-manifest
 
 ## Usage
 
-@TODO
+### Manifest Manager
+
+```js
+const ManifestManager = require('./src/manifestManager')
+
+const manifestManager = new ManifestManager({
+  basePath: '/Users/lirantal/projects/forks/myGitProject',
+  manifestFile: '/tmp/pact_manifest.json',
+  pactFilesPath: 'test/pacts/*.json',
+  pactDefaultTag: 'develop'
+})
+
+const manifest = await manifestManager.createManifest()
+```
+
+### Manifest Publisher
+
+```js
+const ManifestPublisher = require('./src/manifestPublisher')
+
+const pactBroker = 'https://test.pact.dius.com.au'
+const pactBrokerUsername = 'username'
+const pactBrokerPassword = 'password'
+const consumerVersion = '1.0.0' // should ideally get this package.json
+
+// Obtain the pacts manifest that ManifestManager creates
+// and use the `getManifestsByTag` method to get an object tree
+// representation that can be easily iterated to publish the pacts
+const manifestByTag = manifestManager.getManifestsByTag(manifest)
+
+let publishedPacts = []
+
+// Iterate on each tag and publish the pact files for it to the broker
+for (let [tag, pactFiles] of Object.entries(manifest)) {
+  const manifestPublisher = new ManifestPublisher({
+	pactFiles: pactFiles,
+	broker: {
+	  pactBroker: pactBroker,
+	  pactBrokerUsername: pactBrokerUsername,
+	  pactBrokerPassword: pactBrokerPassword
+	},
+	consumerVersion: consumerVersion,
+	tags: [tag]
+  })
+
+  publishedPacts.push(manifestPublisher.publish())
+}
+
+const res = await Promise.all(publishedPacts)
+```
+
 
 ## Related resources
 
