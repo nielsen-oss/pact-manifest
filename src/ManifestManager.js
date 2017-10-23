@@ -137,11 +137,11 @@ module.exports = class ManifestManager {
    * @param {Object} pactManifest a standard pact manifest-file
    * @returns {Object} pacts an array of pact files by tag
    */
-  getManifestsByTag (pactManifest = {}) {
+  static getManifestsByTag (basePath = '', pactManifest = {}) {
     let pacts = {}
     for (let pactFilePath in pactManifest) {
       let tag = pactManifest[pactFilePath]
-      pacts[tag] ? pacts[tag].push(pactFilePath) : pacts[tag] = [path.join(this.basePath, pactFilePath)]
+      pacts[tag] ? pacts[tag].push(pactFilePath) : pacts[tag] = [path.join(basePath, pactFilePath)]
     }
 
     return pacts
