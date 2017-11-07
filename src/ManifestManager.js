@@ -135,13 +135,16 @@ module.exports = class ManifestManager {
    * @TODO handle the use-case of multiple tags
    *
    * @param {Object} pactManifest a standard pact manifest-file
+   * @param {String} filterByTag a tag to filter the results by. If not provided, all the tags will be returned
    * @returns {Object} pacts an array of pact files by tag
    */
-  static getManifestsByTag (basePath = '', pactManifest = {}) {
+  static getManifestsByTag (basePath = '', pactManifest = {}, filterByTag) {
     let pacts = {}
     for (let pactFilePath in pactManifest) {
       let tag = pactManifest[pactFilePath]
-      pacts[tag] ? pacts[tag].push(pactFilePath) : pacts[tag] = [path.join(basePath, pactFilePath)]
+      if (filterByTag === undefined || (filterByTag && filterByTag.toLowerCase() === tag.toLowerCase())) {
+        pacts[tag] ? pacts[tag].push(pactFilePath) : pacts[tag] = [path.join(basePath, pactFilePath)]
+      }
     }
 
     return pacts
