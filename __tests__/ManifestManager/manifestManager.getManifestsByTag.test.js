@@ -36,4 +36,3 @@ test('successfully filter the pacts by a specific tag', async () => {
   expect(Object.keys(manifestsByTag).length).toEqual(1)
   expect(manifestsByTag.hasOwnProperty(tag)).toBeTruthy()
 })
-
