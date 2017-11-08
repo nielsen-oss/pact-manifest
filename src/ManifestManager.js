@@ -132,7 +132,6 @@ module.exports = class ManifestManager {
    * Converts a standard pact manifest file to an object tree of
    * pact files by tag
    *
-   * @TODO handle the use-case of multiple tags
    *
    * @param {Object} pactManifest a standard pact manifest-file
    * @param {String} filterByTag a tag to filter the results by. If not provided, all the tags will be returned

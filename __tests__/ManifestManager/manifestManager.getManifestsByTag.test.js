@@ -36,3 +36,19 @@ test('successfully filter the pacts by a specific tag', async () => {
   expect(Object.keys(manifestsByTag).length).toEqual(1)
   expect(manifestsByTag.hasOwnProperty(tag)).toBeTruthy()
 })
+
+test('return empty object when parameter pactManifest is not passed', async () => {
+  const basePath = '/home/user1'
+  let manifestsByTag = ManifestManager.getManifestsByTag(basePath)
+  expect(manifestsByTag).toEqual({})
+})
+
+test('pact path is like in manifest when basePath is undefined ', async () => {
+  const pactManifest = {
+    'nbi-pact.json': 'develop',
+  }
+  let manifestsByTag = ManifestManager.getManifestsByTag(undefined, pactManifest)
+  expect(Object.keys(manifestsByTag).length).toEqual(1)
+  expect(manifestsByTag.hasOwnProperty('develop')).toBeTruthy()
+  expect(manifestsByTag['develop'][0]).toEqual('nbi-pact.json')
+})
