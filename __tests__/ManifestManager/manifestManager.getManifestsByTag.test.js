@@ -45,7 +45,7 @@ test('return empty object when parameter pactManifest is not passed', async () =
 
 test('pact path is like in manifest when basePath is undefined ', async () => {
   const pactManifest = {
-    'nbi-pact.json': 'develop',
+    'nbi-pact.json': 'develop'
   }
   let manifestsByTag = ManifestManager.getManifestsByTag(undefined, pactManifest)
   expect(Object.keys(manifestsByTag).length).toEqual(1)
