@@ -1,7 +1,7 @@
 'use strict'
 
-const ManifestManager = require('./src/manifestManager')
-const ManifestPublisher = require('./src/manifestPublisher')
+const ManifestManager = require('./src/ManifestManager')
+const ManifestPublisher = require('./src/ManifestPublisher')
 
 module.exports = {
   ManifestManager,
