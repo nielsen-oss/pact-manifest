@@ -1,6 +1,6 @@
 {
-  "name": "pact-manifest",
-  "version": "0.0.5",
+  "name": "@nielsen-oss/pact-manifest",
+  "version": "0.0.6
   "description": "Pact Manifest is a Node.js library to publish pact contracts to a broker using a manifest",
   "main": "index.js",
   "scripts": {
